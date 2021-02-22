@@ -1,0 +1,95 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" style="color:white;">Emp Manager : Clockify</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor02">
+       <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+             <a (click)="goToHomePage()" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a (click)="goToUserPage()" class="nav-link">View Users</a>
+         </li>
+         <li class="nav-item active">
+            <a (click)="goToReportPage()" class="nav-link">View Report</a>
+         </li>
+        </ul>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+   <form #dateForm="ngForm" (ngSubmit)="generateReport(dateForm)">
+      <div class="row">
+         <div class="col-4">
+             <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Date Started</label>
+                <input type="text" ngModel id ="startDate" name="startDate" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              </div>
+          </div>
+          <div class="col-4">
+             <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Date Ended</label>
+                <input type="text" ngModel id="endDate" name="endDate" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+             </div>
+          </div>
+          <div class="col-1 text-center" style="padding-top: 1%;" >
+             <div class="mb-3">
+                <button class="btn btn-lg btn-primary">Submit</button>
+             </div>
+          </div>
+      </div>   
+   </form>
+
+
+
+      <div class="container">
+         <div class="container-fluid p-0">
+           <h1 class="h3 mb-3">Clockify Time Report </h1>
+           <div class="row">
+              <div class="col-xl-12">
+                 <div class="card">
+                    <div class="card-header pb-0">
+                       <div class="card-actions float-right">
+                          <div class="dropdown show">
+                             <a href="#" data-toggle="dropdown" data-display="static">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal align-middle"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+                             </a>
+      
+                             <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                             </div>
+                          </div>
+                       </div>
+                       <h5 class="card-title mb-0">Total Time : {{totalDuration}} hours</h5>
+                    </div>
+                    <div class="card-body">
+                       <table class="table table-striped" style="width:100%">
+                          <thead>
+                             <tr>
+                                <th>#</th>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Duration</th>
+                             </tr>
+                          </thead>
+                          <tbody>
+                             <tr *ngFor="let report of summaryReports; index as i">
+                                <td>{{i + 1}}</td>
+                                <td>{{report.id}}</td>
+                                <td>{{report.name}}</td>
+                                <td>{{report.duration}} hours  </td>
+      
+                             </tr>
+                          </tbody>
+                       </table>
+                    </div>
+                 </div>
+              </div>
+            </div>
+         </div>
+   
+
+  </div>
